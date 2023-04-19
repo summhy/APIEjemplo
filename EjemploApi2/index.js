@@ -19,6 +19,12 @@ app.post('/api/v1/productos', async(req,res)=>{
     res.json(resultado.rows)
 })
 
+app.delete('/api/v1/productos/:id',async(req,res)=>{
+    const {id} = req.params
+    await  pool.query("Delete from productos where id=$1",[id])
+    res.json({})
+})
+
 app.put('/api/v1/productos/:id', async(req,res)=>{
     const {id} =  req.params
     const {nombre, categoria, cantidad} = req.body
